@@ -123,6 +123,10 @@ public:
     int seRepara();
 };
 
+    int service::seRepara()
+    {
+        return locuri_masini--;
+    }
 class reparatie
 {
 private:
