@@ -175,15 +175,15 @@ int main() {
     service service1("Bucuresti","Alex",5);
     service service2("Cluj","Marius");
 
-    service service3 = service1;
+    //service service3 = service1;
 
     cout << "Service-ul din " << service1.getLocatie() << " unde manager este " << service1.getManager() << " are " << service1.getLocuriMasini()<< " locuri libere pentru reparatii \n";
     cout << "Service-ul din " << service2.getLocatie() << " unde manager este " << service2.getManager() << " are " << service2.getLocuriMasini()<< " locuri libere pentru reparatii \n";
-    cout << "Service-ul din " << service3.getLocatie() << " unde manager este " << service3.getManager() << " are " << service3.getLocuriMasini()<< " locuri libere pentru reparatii \n";
+    //cout << "Service-ul din " << service3.getLocatie() << " unde manager este " << service3.getManager() << " are " << service3.getLocuriMasini()<< " locuri libere pentru reparatii \n";
 
-    service3 = service2;
+    //service3 = service2;
 
-    cout << "Service-ul din " << service3.getLocatie() << " unde manager este " << service3.getManager() << " are " << service3.getLocuriMasini()<< " locuri libere pentru reparatii \n\n\n";
+    //cout << "Service-ul din " << service3.getLocatie() << " unde manager este " << service3.getManager() << " are " << service3.getLocuriMasini()<< " locuri libere pentru reparatii \n\n\n";
 
     Masina masina1("BMW","X5","Negru",5000);
     Masina masina2("Audi","A3","Verde",4000);
