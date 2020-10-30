@@ -70,7 +70,7 @@ public:
 };
 
 void Masina::inService(){
-    cout << "Masina " << marca << " " << model << " a intrat in service " << "\n";
+    cout << "Masina " << marca << " " << model << " de culoare " << culoare << " cu pretul de " << pret << "$ a intrat in service " << "\n";
 };
 
 class service{
@@ -118,7 +118,7 @@ public:
     }
 
     virtual ~service() {
-        cout << "Service-ul din " << locatie << " s-a inchis" << "\n";;
+        cout << "Service-ul din " << locatie << " s-a inchis" << "\n";
     }
     int seRepara();
 };
