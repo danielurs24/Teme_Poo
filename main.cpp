@@ -85,6 +85,11 @@ public:
 
     }
 
+    friend ostream &operator<<(ostream &m, const Masina &masina1) {
+        m << masina1.getMarca() << " " << masina1.getModel() << " este in service pentru a efectua revizia \n";
+        return m;
+    }
+
     void inService();
 
 };
@@ -213,7 +218,6 @@ public:
 };
 
 
-
 int main() {
 
     service service1("Bucuresti","Alex",5);
@@ -240,13 +244,16 @@ int main() {
 
     service1.seRepara();
 
-    cout << masina1.getMarca() << " " << masina1.getModel() << " este in service pentru a efectua " << repMasina1.getDenumire() << " \n";
+    cout << masina1;
+
+
+   /* cout << masina1.getMarca() << " " << masina1.getModel() << " este in service pentru a efectua " << repMasina1.getDenumire() << " \n";
 
     service1.seRepara();
 
     cout << masina2.getMarca() << " " << masina2.getModel() << " este in service pentru a efectua " << repMasina2.getDenumire() << " \n";
 
     cout << "\nIn service-ul din " << service1.getLocatie() << " mai sunt " << service1.getLocuriMasini() << " locuri\n\n";
-
+*/
     return 0;
 }
