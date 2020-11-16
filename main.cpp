@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 using namespace std ;
 
@@ -192,16 +193,16 @@ private:
 
     string denumire;
     int durata;
-    int cost;
     Masina m = Masina();
+    vector<const reparatie> cost;
 
 public:
 
-    reparatie(const string &denumire, int durata, int cost,const Masina &m=Masina()) {
+
+    reparatie(const string &denumire, int durata, const Masina &m = Masina()){
 
         this->denumire=denumire;
         this->durata=durata;
-        this->cost=cost;
         this->m=m;
 
     }
@@ -231,13 +232,11 @@ public:
         reparatie::durata = durata;
     }
 
-    int getCost() const {
-
+    const vector<reparatie> &getCost() const {
         return cost;
     }
 
-    void setCost(int cost) {
-
+    void setCost(const vector<reparatie> &cost) {
         reparatie::cost = cost;
     }
 
@@ -249,8 +248,19 @@ public:
         reparatie::m = m;
     }
 
+    void cost_reparatie(int pret)
+    {
+        cost.push_back(pret);
+    }
+
+    void afisare_pret_total()
+    {   int sum;
+        for(int i = 0; i < cost.size(); i++)
+            cout << cost[i];
+
+    }
     friend ostream &operator<<(ostream &m, const reparatie &rep) {
-        m << "Se face operatiunea de "  << rep.getDenumire() << " la masina " << rep.getM() << " cu costul de " << rep.getCost() << " de lei care dureaza " << rep.getDurata() << " de minute \n";
+        m << "Se face operatiunea de "  << rep.getDenumire() << " la masina " << rep.getM()  << " care dureaza " << rep.getDurata() << " de minute \n";
         return m;
     }
 };
@@ -274,19 +284,23 @@ int main() {
     Masina masina1("BMW","X5","Negru",5000);
     Masina masina2("Audi","A3","Verde",4000);
 
-    reparatie repMasina1("Revizie", 40, 700,masina1);
-    reparatie repMasina2("Schimb Placute de frana", 30, 350, masina2);
+    reparatie repMasina1("Revizie", 40, masina1);
+    reparatie repMasina2("Schimb Placute de frana", 30, masina2);
 
     masina1.inService();
     masina2.inService();
 
     service1.seRepara();
 
-    cout <<"\n" << repMasina1;
+    //cout <<"\n" << repMasina1;
 
     service1.Reparata();
     masina1.outService();
     //cout << masina1;
+
+    repMasina1.cost_reparatie(700);
+    repMasina1.cost_reparatie(500);
+    repMasina1.afisare_pret_total();
 
 
 
