@@ -106,6 +106,76 @@ void Masina::outService(){
     cout << "Masina " << this->marca << " " << this->model << " a fost reparata" << "\n";
 };
 
+class reparatie{
+
+private:
+
+    string denumire;
+    int durata;
+    Masina m = Masina();
+    vector<int> cost;
+public:
+
+
+    reparatie(const string &denumire, int durata, const Masina &m){
+
+        this->denumire=denumire;
+        this->durata=durata;
+        this->m=m;
+
+
+    }
+
+    virtual ~reparatie() {
+
+
+    }
+
+    const string &getDenumire() const {
+
+        return denumire;
+    }
+
+    void setDenumire(const string &denumire) {
+
+        reparatie::denumire = denumire;
+    }
+
+    int getDurata() const {
+
+        return durata;
+    }
+
+    void setDurata(int durata) {
+
+        reparatie::durata = durata;
+    }
+
+    const Masina &getM() const {
+        return m;
+    }
+
+    void setM(const Masina &m) {
+        reparatie::m = m;
+    }
+    void cost_reparatie(int pret)
+    {
+        cost.push_back(pret);
+    }
+
+    void afisare_pret_total()
+    {   int sum = 0;
+        for(int i = 0; i < cost.size(); i++)
+            sum = sum + cost[i];
+        cout << "Pretul total pentru reparatii la masina " << m << " " << sum << " de lei\n";
+
+    }
+    friend ostream &operator<<(ostream &m, const reparatie &rep) {
+        m << "Se face operatiunea de "  << rep.getDenumire() << " la masina " << rep.getM()  << " care dureaza " << rep.getDurata() << " de minute \n";
+        return m;
+    }
+};
+
 class service{
 
 private:
@@ -126,12 +196,14 @@ public:
     this->manager=manager;
 
 }
-    service(const service &srv) {
-
-        this->manager = srv.manager;
-        this->locatie = srv.locatie;
-        this->locuri_masini = srv.locuri_masini;
-
+    service operator==(service &a) {
+        if(this!=&a)
+        {
+            locatie=a.locatie;
+            locuri_masini=a.locuri_masini;
+            manager=a.manager;
+        }
+        return *this;
     }
 
     const string &getLocatie() const {
@@ -168,11 +240,8 @@ public:
         cout << "Service-ul din " << locatie << " s-a inchis" << "\n";
     }
 
-
-
     int seRepara();
     int Reparata();
-
 
 };
 
@@ -187,84 +256,6 @@ public:
 
 
 
-class reparatie{
-
-private:
-
-    string denumire;
-    int durata;
-    Masina m = Masina();
-    vector<const reparatie> cost;
-
-public:
-
-
-    reparatie(const string &denumire, int durata, const Masina &m = Masina()){
-
-        this->denumire=denumire;
-        this->durata=durata;
-        this->m=m;
-
-    }
-
-    virtual ~reparatie() {
-
-
-    }
-
-    const string &getDenumire() const {
-
-        return denumire;
-    }
-
-    void setDenumire(const string &denumire) {
-
-        reparatie::denumire = denumire;
-    }
-
-    int getDurata() const {
-
-        return durata;
-    }
-
-    void setDurata(int durata) {
-
-        reparatie::durata = durata;
-    }
-
-    const vector<reparatie> &getCost() const {
-        return cost;
-    }
-
-    void setCost(const vector<reparatie> &cost) {
-        reparatie::cost = cost;
-    }
-
-    const Masina &getM() const {
-        return m;
-    }
-
-    void setM(const Masina &m) {
-        reparatie::m = m;
-    }
-
-    void cost_reparatie(int pret)
-    {
-        cost.push_back(pret);
-    }
-
-    void afisare_pret_total()
-    {   int sum;
-        for(int i = 0; i < cost.size(); i++)
-            cout << cost[i];
-
-    }
-    friend ostream &operator<<(ostream &m, const reparatie &rep) {
-        m << "Se face operatiunea de "  << rep.getDenumire() << " la masina " << rep.getM()  << " care dureaza " << rep.getDurata() << " de minute \n";
-        return m;
-    }
-};
-
 
 int main() {
 
@@ -273,13 +264,13 @@ int main() {
 
     service service3 = service1;
 
-    //cout << "Service-ul din " << service1.getLocatie() << " unde manager este " << service1.getManager() << " are " << service1.getLocuriMasini()<< " locuri libere pentru reparatii \n";
-    //cout << "Service-ul din " << service2.getLocatie() << " unde manager este " << service2.getManager() << " are " << service2.getLocuriMasini()<< " locuri libere pentru reparatii \n";
-    //cout << "Service-ul din " << service3.getLocatie() << " unde manager este " << service3.getManager() << " are " << service3.getLocuriMasini()<< " locuri libere pentru reparatii \n";
+    cout << "Service-ul din " << service1.getLocatie() << " unde manager este " << service1.getManager() << " are " << service1.getLocuriMasini()<< " locuri libere pentru reparatii \n";
+    cout << "Service-ul din " << service2.getLocatie() << " unde manager este " << service2.getManager() << " are " << service2.getLocuriMasini()<< " locuri libere pentru reparatii \n";
+    cout << "Service-ul din " << service3.getLocatie() << " unde manager este " << service3.getManager() << " are " << service3.getLocuriMasini()<< " locuri libere pentru reparatii \n";
 
-    service3 = service2;
+    service3 = service2; // op =
 
-    //cout << "Service-ul din " << service3.getLocatie() << " unde manager este " << service3.getManager() << " are " << service3.getLocuriMasini()<< " locuri libere pentru reparatii \n\n\n";
+    cout << "Service-ul din " << service3.getLocatie() << " unde manager este " << service3.getManager() << " are " << service3.getLocuriMasini()<< " locuri libere pentru reparatii \n\n\n";
 
     Masina masina1("BMW","X5","Negru",5000);
     Masina masina2("Audi","A3","Verde",4000);
@@ -290,17 +281,19 @@ int main() {
     masina1.inService();
     masina2.inService();
 
-    service1.seRepara();
+    service1.seRepara(); //scade numarul de locuri din service
 
-    //cout <<"\n" << repMasina1;
 
-    service1.Reparata();
-    masina1.outService();
     //cout << masina1;
 
-    repMasina1.cost_reparatie(700);
+    repMasina1.cost_reparatie(700); //costuri reparatie
     repMasina1.cost_reparatie(500);
-    repMasina1.afisare_pret_total();
+
+    masina1.outService(); //masina a fost reparata
+
+    service1.Reparata(); //creste numarul de locuri din service
+
+    repMasina1.afisare_pret_total(); // afisare pret reparatie
 
 
 
