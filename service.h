@@ -82,3 +82,8 @@ int service::Reparata(){
 
     return locuri_masini++;
 }
+class service_factory{
+public:
+    static service service_bucuresti() { return service ("Bucuresti","Alex",5);}
+    static service service_cluj() { return service ("Cluj","Marius", 5);}
+};

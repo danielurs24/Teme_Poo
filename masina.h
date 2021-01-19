@@ -101,3 +101,9 @@ void Masina::outService(){
 
     std::cout << "Masina " << this->marca << " " << this->model << " a fost reparata" << "\n";
 };
+
+class masina_factory{
+public:
+    static Masina Audi_A3() { return Masina ("BMW","X5","Negru",5000);}
+    static Masina BMW_X5() { return Masina ("Audi","A3","Verde",4000);}
+};

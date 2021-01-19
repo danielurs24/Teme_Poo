@@ -8,8 +8,8 @@ using namespace std ;
 
 int main() {
 
-    service service1("Bucuresti","Alex",5);
-    service service2("Cluj","Marius", 5);
+    service service1 = service_factory::service_bucuresti();
+    service service2 = service_factory::service_cluj();
 
     service *service3;
     service3 = &service1;
@@ -25,8 +25,8 @@ int main() {
 
     cout << "\n";
 
-    Masina masina1("BMW","X5","Negru",5000);
-    Masina masina2("Audi","A3","Verde",4000);
+    Masina masina1 = masina_factory::BMW_X5();
+    Masina masina2 = masina_factory::Audi_A3();
 
 
 
