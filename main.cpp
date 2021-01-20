@@ -33,25 +33,43 @@ int main() {
     reparatie repMasina1("Revizie", 40, masina1);
     reparatie repMasina2("Schimb Placute de frana", 30, masina2);
 
-    masina1.inService();
+
     masina2.inService();
 
     cout << "\n";
+    try {
+        if(masina1.getMarca() == "BMW" && masina1.getModel() == "X5")
+        {
+            masina1.inService();
+            repMasina1.seRepara();
+            service3 = &repMasina1; // Functia virtuala
+            service3->info();
+            repMasina1.cost_reparatie(700); //costuri reparatie
+            repMasina1.cost_reparatie(500);
+            masina1.outService(); //masina a fost reparata
+            repMasina1.Reparata(); //creste numarul de locuri din service
+            repMasina1.afisare_pret_total(); // afisare pret reparatie
+        }
+        else
+            throw masina1;
 
-    repMasina1.seRepara(); //scade numarul de locuri din service
+    }
+    catch (Masina x) {
+        cout << "Masina "<< x.getMarca() << " " << x.getModel() << " nu este prezeta pentru reparatie" << endl << endl;
 
-    service3 = &repMasina1; // Functia virtuala
-    service3->info();
+    }
 
 
-    repMasina1.cost_reparatie(700); //costuri reparatie
-    repMasina1.cost_reparatie(500);
 
-    masina1.outService(); //masina a fost reparata
 
-    repMasina1.Reparata(); //creste numarul de locuri din service
 
-    repMasina1.afisare_pret_total(); // afisare pret reparatie
+
+
+
+
+
+
+
 
     cout << "\n"; //
 

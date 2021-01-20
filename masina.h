@@ -104,6 +104,6 @@ void Masina::outService(){
 
 class masina_factory{
 public:
-    static Masina Audi_A3() { return Masina ("BMW","X5","Negru",5000);}
-    static Masina BMW_X5() { return Masina ("Audi","A3","Verde",4000);}
+    static Masina  BMW_X5() { return Masina ("BMW","X5","Negru",5000);}
+    static Masina Audi_A3() { return Masina ("Audi","A3","Verde",4000);}
 };
