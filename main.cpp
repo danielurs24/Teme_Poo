@@ -7,7 +7,7 @@
 using namespace std ;
 
 int main() {
-
+    string masina;
     service service1 = service_factory::service_bucuresti();
     service service2 = service_factory::service_cluj();
 
@@ -38,7 +38,7 @@ int main() {
 
     cout << "\n";
     try {
-        if(masina1.getMarca() == "BMW" && masina1.getModel() == "X5")
+        if(masina1.getMarca() != "BMW" && masina1.getModel() != "X5")
         {
             masina1.inService();
             repMasina1.seRepara();
@@ -50,16 +50,39 @@ int main() {
             repMasina1.Reparata(); //creste numarul de locuri din service
             repMasina1.afisare_pret_total(); // afisare pret reparatie
         }
-        else
-            throw masina1;
+        else {
+            masina = masina1.getMarca() + " " + masina1.getModel();
+            throw masina;
+        }
 
     }
-    catch (Masina x) {
-        cout << "Masina "<< x.getMarca() << " " << x.getModel() << " nu este prezeta pentru reparatie" << endl << endl;
+    catch (string x) {
+        cout << "Masina "<< x << " nu este prezeta pentru reparatie" << endl << endl;
 
     }
 
 
+    try {
+        if(masina2.getMarca() != "BMW" && masina2.getModel() != "X5")
+        {
+            masina2.inService();
+            repMasina2.seRepara();
+            repMasina2.cost_reparatie(700);
+            repMasina2.cost_reparatie(500);
+            masina2.outService();
+            repMasina2.Reparata();
+            repMasina2.afisare_pret_total();
+        }
+        else {
+            masina = masina2.getMarca() + " " + masina2.getModel();
+            throw masina;
+        }
+
+    }
+    catch (string x) {
+        cout << "Masina "<< x << " nu este prezeta pentru reparatie" << endl << endl;
+
+    }
 
 
 

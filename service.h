@@ -20,7 +20,7 @@ public:
         this->manager=manager;
 
     }
-    service operator==(service &a) {
+    service operator=(service &a) {
         if(this!=&a)
         {
             locatie=a.locatie;
