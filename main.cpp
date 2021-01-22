@@ -34,7 +34,7 @@ int main() {
     reparatie repMasina2("Schimb Placute de frana", 30, masina2);
 
 
-    masina2.inService();
+
 
     cout << "\n";
     try {
@@ -85,18 +85,7 @@ int main() {
     }
 
 
-
-
-
-
-
-
-
-
-
     cout << "\n"; //
-
-
 
 
     return 0;
